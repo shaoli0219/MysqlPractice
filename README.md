@@ -126,6 +126,44 @@ mysql --V
 
 ##### 基础查询
 
+1.  ###### 查询表中的单个字段
+
+    ```sql
+    SELECT last_name FROM employees;
+    ```
+
+2.  ###### 查询表中的多个字段
+
+    ```sql
+    SELECT last_name,salary,email FROM employees;
+    ```
+
+3.  ###### 查询表中的所有字段
+
+    方式一：
+
+    ```sql
+    SELECT * FROM employees
+    ```
+
+    方式二：
+
+    ```sql
+    SELECT 
+    
+    employee_id,
+    
+    first_name,
+    
+    last_name,
+    
+    	...
+    
+    FROM
+    
+    employees;
+    ```
+
 ##### 条件查询
 
 ##### 排序查询
