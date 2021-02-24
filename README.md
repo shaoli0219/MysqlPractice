@@ -2,18 +2,18 @@
 
 [TOC]
 
-## 数据库的好处
+## 一、数据库的好处
 
 1. 持久化数据到本地
 2. 可以实现结构化查询，方便管理
 
-## 数据库相关概念
+## 二、数据库相关概念
 
 1. DB	数据库保存一组具有组织的数据的容器
 2. DBMS	数据库管理系统，用于管理DB中的数据
 3. SQL	结构化查询语言，用于和DBMS通讯的语言
 
-## 初始化MySQL
+## 三、初始化MySQL
 
 1. MySQL简介
 
@@ -31,50 +31,50 @@
         ​	启动net start 服务名
         ​	关闭net stop 服务名sdsd
 
-## MySQL服务的登录和退出
+## 四、MySQL服务的登录和退出
 
-##### 登陆
+### 登陆
 
 1. 方式一：通过MySQL自带的客户端登陆，但只限于rooty用户
 
 2. 方式二：通过cmd登陆，如：mysql 【-h主机号 -p端口号】-u用户名 -p密码
 
 
-##### 退出
+### 退出
 
  1. exit
 
  2. crtl+c
 
-## MySQL的常见命令和语法规范
+## 五、MySQL的常见命令和语法规范
 
 ### 常见命令
 
-##### 查看当前所有的数据库
+#### 查看当前所有的数据库
 
 ```sql
 show databases;
 ```
 
-##### 打开指定的数据库
+#### 打开指定的数据库
 
 ```sql
 use 库名;
 ```
 
-##### 查看当前数据库的所有表
+#### 查看当前数据库的所有表
 
 ```sql
 show tables;
 ```
 
-##### 查看其它数据库的所有表
+#### 查看其它数据库的所有表
 
 ```sql
 show tables from 库名;
 ```
 
-##### 创建表
+#### 创建表
 
 ```sql
 create table 表名{
@@ -84,13 +84,13 @@ create table 表名{
 }
 ```
 
-##### 查看表结构
+#### 查看表结构
 
 ```sql
 desc 表名
 ```
 
-##### 查看服务器版本
+#### 查看服务器版本
 
 已登录
 
@@ -122,124 +122,156 @@ mysql --V
 
     ​	多行注释：/* 注释文字 */
 
-## DQL（数据库查询语言）
+## 六、DQL（数据库查询语言）
 
-##### 基础查询
+#### 基础查询
 
-1.  ###### 查询表中的单个字段
+##### 1_查询表中的单个字段
 
-    ```sql
-    SELECT last_name FROM employees;
-    ```
+```sql
+SELECT last_name FROM employees;
+```
 
-2.  ###### 查询表中的多个字段
+##### 2_查询表中的多个字段
 
-    ```sql
-    SELECT last_name,salary,email FROM employees;
-    ```
+```sql
+SELECT last_name,salary,email FROM employees;
+```
 
-3.  ###### 查询表中的所有字段
+##### 3_查询表中的所有字段
 
-    方式一：
+方式一：
 
-    ```sql
-    SELECT * FROM employees
-    ```
+```sql
+SELECT * FROM employees
+```
 
-    方式二：
+方式二：
 
-    ```sql
-    SELECT 
-    employee_id,
-    first_name,
-    last_name,
-    	...
-    FROM
-    employees;
-    ```
-    
-4.  ###### 查询常量
-    ```sql
-        SELECT 100;
-        SELECT 'john';
-    ```
-    
-5.  ###### 查询表达式
-    ```sql
-        SELECT 100*77;
-    ```
-    
-6.  ###### 查询函数
-    ```sql
-        SELECT VERSION();
-    ```
-    
-7.  ###### 起别名AS
+```sql
+SELECT 
+employee_id,
+first_name,
+last_name,
+	...
+FROM
+employees;
+```
 
-    方式一：
+##### 4_查询常量
+```sql
+    SELECT 100;
+    SELECT 'john';
+```
 
-    ```sql
-    SELECT last_name AS 姓,first_name AS 名 FROM employees;
-    
-    SELECT 100*77 AS 结果;
-    
-    SELECT 100*100 AS "OUT PUT";
-    ```
+##### 5_查询表达式
+```sql
+    SELECT 100*77;
+```
 
-    方式二：
+##### 6_查询函数
+```sql
+    SELECT VERSION();
+```
 
-    ```sql
-    SELECT last_name 姓,first_name 名 FROM employees;
-    
-    SELECT 100*77 结果;
-    ```
+##### 7_起别名AS
 
-    
-8.  去重
+方式一：
 
+```sql
+SELECT last_name AS 姓,first_name AS 名 FROM employees;
 
-##### 条件查询
+SELECT 100*77 AS 结果;
 
-##### 排序查询
+SELECT 100*100 AS "OUT PUT";
+```
 
-##### 常见函数
+方式二：
 
-##### 分组函数
+```sql
+SELECT last_name 姓,first_name 名 FROM employees;
 
-##### 分组查询
+SELECT 100*77 结果;
+```
 
-##### 链接查询
+##### 8_去重
 
-##### 子查询
+```sql
+SELECT DISTINCT
+  department_id
+FROM
+  employees
+```
 
-##### 分页查询
+##### 9_MySQL中的+
 
-##### union联合查询
+```sql
+SELECT
+  10+20;
+#30
+SELECT
+  "20" + 20;
+#40
+SELECT
+  "test" + 20;
+#20
+SELECT
+  NULL + 20;
+#  NULL
+```
 
+##### 10_CONCAT函数
 
-## DML（数据库操作语言）
-
-##### 插入语句
-
-##### 修改语句
-
-##### 删除语句
-
-
-## DDL（数据库定义语言）
-
-##### 库和表的管理
-
-##### 常见数据类型介绍
-
-##### 常见约束
+```sql
+SELECT
+  CONCAT (last_name, " ", first_name) AS 姓名
+FROM
+  employees;
+```
 
 
-## TCL（事务控制语言）
+#### 条件查询
 
-## 视图
+#### 排序查询
 
-## 存储过程和函数
+#### 常见函数
 
-## 流程控制结构
+#### 分组函数
+
+#### 分组查询
+
+#### 链接查询
+
+#### 子查询
+
+#### 分页查询
+
+#### union联合查询
+
+
+## 七、DML（数据库操作语言）
+
+#### 插入语句
+
+#### 修改语句
+
+#### 删除语句
+
+
+## 八、DDL（数据库定义语言）
+
+#### 库和表的管理
+
+#### 常见数据类型介绍
+
+#### 常见约束
+
+
+## 九、TCL（事务控制语言）
+
+## 十、视图
+
+## 十一、存储过程和函数
+
+## 十二、流程控制结构
 

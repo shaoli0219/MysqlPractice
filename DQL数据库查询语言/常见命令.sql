@@ -48,4 +48,24 @@ SELECT
 SELECT DISTINCT
   department_id
 FROM
-  employees
+  employees;
+
+/****+****/
+SELECT
+  10+20;
+
+SELECT
+  "20" + 20;
+
+SELECT
+  "test" + 20;
+
+SELECT
+  NULL + 20;
+
+/****CONCA****/
+SELECT
+  CONCAT (last_name, " ", first_name) AS 姓名
+FROM
+  employees;
+
