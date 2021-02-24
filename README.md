@@ -157,6 +157,46 @@ mysql --V
     FROM
     employees;
     ```
+    
+4.  ###### 查询常量
+    ```sql
+        SELECT 100;
+        SELECT 'john';
+    ```
+    
+5.  ###### 查询表达式
+    ```sql
+        SELECT 100*77;
+    ```
+    
+6.  ###### 查询函数
+    ```sql
+        SELECT VERSION();
+    ```
+    
+7.  ###### 起别名AS
+
+    方式一：
+
+    ```sql
+    SELECT last_name AS 姓,first_name AS 名 FROM employees;
+    
+    SELECT 100*77 AS 结果;
+    
+    SELECT 100*100 AS "OUT PUT";
+    ```
+
+    方式二：
+
+    ```sql
+    SELECT last_name 姓,first_name 名 FROM employees;
+    
+    SELECT 100*77 结果;
+    ```
+
+    
+8.  去重
+
 
 ##### 条件查询
 
