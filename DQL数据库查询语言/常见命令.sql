@@ -63,7 +63,7 @@ SELECT
 SELECT
   NULL + 20;
 
-/****CONCA****/
+/****CONCAt****/
 SELECT
   CONCAT (last_name, " ", first_name) AS 姓名
 FROM

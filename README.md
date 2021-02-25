@@ -229,8 +229,36 @@ FROM
   employees;
 ```
 
-
 #### 条件查询
+
+##### 1_条件表达式
+
+```sql
+/**1查询工资大于12000的员工信息**/
+SELECT
+  *
+FROM
+  employees
+WHERE salary > 12000;
+```
+
+```sql
+/**2查询部门编号不等于90的员工的姓名和部门编号**/
+SELECT
+  last_name,
+  department_id
+FROM
+  employees
+WHERE department_id <> 90;
+```
+
+##### 2_逻辑表达式
+
+
+
+##### 3_模糊查询（高级条件表达式）
+
+
 
 #### 排序查询
 
