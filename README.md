@@ -233,6 +233,8 @@ FROM
 
 ##### 1_条件表达式
 
+==<	>	<=	>=	 !=	===
+
 ```sql
 /**1查询工资大于12000的员工信息**/
 SELECT
@@ -254,9 +256,173 @@ WHERE department_id <> 90;
 
 ##### 2_逻辑表达式
 
+==&&	|| 	!==
 
+==and	or	not==
+
+```sql
+/**3查询工资在10000到20000之间的员工名、工资及奖金**/
+SELECT
+  last_name,
+  salary,
+  commission_pct
+FROM
+  employees
+WHERE salary > 10000
+  AND salary < 20000;
+```
+
+```sql
+/**4查询部门编号不是在90到110之间，或者工资高于15000的员工信息**/
+SELECT
+  *
+FROM
+  employees
+WHERE NOT (
+    department_id >= 90
+    AND department_id <= 110
+  )
+  OR salary > 15000;
+```
 
 ##### 3_模糊查询（高级条件表达式）
+
+==like==
+
+**常和通配符搭配使用：**%	任意多、_	只有一个、\转义字符、escape关键字
+
+```sql
+/**5查询员工姓名中包涵字符a的员工信息**/
+SELECT
+  *
+FROM
+  employees
+WHERE last_name LIKE "%a%";
+```
+
+```sql
+/**6查询员工姓名中第三个字符为n第五个字符为l员工**/
+SELECT
+  last_name,
+  salary
+FROM
+  employees
+WHERE last_name LIKE "__n_l%";
+```
+
+```sql
+/**7查询员工姓名中第二个字符为_的员工姓名**/
+SELECT
+  last_name
+FROM
+  employees
+WHERE last_name LIKE "_\_%";
+
+SELECT
+  last_name
+FROM
+  employees
+WHERE last_name LIKE "_@_%" ESCAPE "@";
+```
+
+==between and==
+
+```sql
+/**8查询员工编号在100到200之间的员工信息**/
+SELECT
+  *
+FROM
+  employees
+WHERE employee_id >= 100
+  AND employee_id <= 120;
+
+SELECT
+  *
+FROM
+  employees
+WHERE employee_id BETWEEN 100
+  AND 120;
+```
+
+==in==
+
+```sql
+/**9查询工种编号是IT_PROG、AD_VP、AD_PRES中的一个的员工的员工名和工种编号**/
+SELECT
+  last_name,
+  job_id
+FROM
+  employees
+WHERE job_id = "IT_PROG"
+  OR job_id = "AD_VP"
+  OR job_id = "AD_PRES";
+
+SELECT
+  last_name,
+  job_id
+FROM
+  employees
+WHERE job_id IN ("IT_PROG", "AD_VP", "AD_PRES");
+```
+
+==is null==
+
+```sql
+/**10查询没有奖金的员工姓名和奖金率**/
+SELECT
+  last_name,
+  commission_pct
+FROM
+  employees
+WHERE commission_pct IS NULL;
+
+/**11查询有奖金的员工姓名和奖金率**/
+SELECT
+  last_name,
+  commission_pct
+FROM
+  employees
+WHERE commission_pct IS NOT NULL;
+```
+
+==安全等于和安全不等于==
+
+```sql
+/**12安全等于<=>、安全不等于<>**/
+SELECT
+  last_name,
+  commission_pct
+FROM
+  employees
+WHERE commission_pct <=> NULL;
+
+SELECT
+  last_name,
+  salary
+FROM
+  employees
+WHERE salary <=> 12000;
+
+SELECT
+  last_name,
+  salary
+FROM
+  employees
+WHERE salary <> 12000;
+```
+
+==IFNULL==
+
+```sql
+/**13查询编号为176的员工的姓名、部门号和年薪**/
+SELECT
+  last_name,
+  department_id,
+  salary * 12 * (1+ IFNULL (commission_pct, 0)) AS 年薪
+FROM
+  employees
+WHERE employee_id = 176;
+```
 
 
 
