@@ -424,11 +424,99 @@ FROM
 WHERE employee_id = 176;
 ```
 
-
-
 #### 排序查询
 
+##### 注意事项
+
+- asc代表升序，desc代表降序
+- 如果不写asc或者desc，默认按升序排序
+- order by子句中支持单个字段、多个字段、表达式、函数和别名
+- order by子句一般放到查询语句最后（limit子句除外）
+
+##### 1_基本用法
+
+```sql
+/**14查询员工信息，要求工资从高到低或从低到高**/
+SELECT
+  *
+FROM
+  employees
+ORDER BY salary DESC;
+
+SELECT
+  *
+FROM
+  employees
+ORDER BY salary ASC;
+```
+
+##### 2_添加筛选条件
+
+```sql
+/**15查询部门编号>=90的员工信息，安入职时间的先后顺序**/
+SELECT
+  *
+FROM
+  employees
+WHERE department_id >= 90
+ORDER BY hiredate ASC;
+```
+
+##### 3_按表达式排序
+
+```sql
+/**16按年薪的高低显示员工的信息和年薪**/
+SELECT
+  *,
+  salary * 12 * (1+ IFNULL (commission_pct, 0)) 年薪
+FROM
+  employees
+ORDER BY salary * 12 * (1+ IFNULL (commission_pct, 0)) DESC;
+
+SELECT
+  *,
+  salary * 12 * (1+ IFNULL (commission_pct, 0)) 年薪
+FROM
+  employees
+ORDER BY 年薪 DESC;
+```
+
+##### 4_按函数排序
+
+```
+/**17按姓名长度显示员工姓名和工资**/
+SELECT
+  last_name,
+  LENGTH (last_name) 姓名长度,
+  salary
+FROM
+  employees
+ORDER BY 姓名长度 DESC;
+```
+
+5_多个字段同时排序
+
+```sql
+/**18查询员工信息，先按工资升序，再按员工编号降序**/
+SELECT
+  *
+FROM
+  employees
+ORDER BY salary ASC,
+  employee_id DESC;
+```
+
 #### 常见函数
+
+##### 1_
+
+##### 2_
+
+##### 3_
+
+##### 4_
+
+##### 5_
 
 #### 分组函数
 
