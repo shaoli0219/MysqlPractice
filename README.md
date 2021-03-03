@@ -233,7 +233,7 @@ FROM
 
 ##### 1_条件表达式
 
-==<	>	<=	>=	 !=	===
+###### <	>	<=	>=	 !=	=
 
 ```sql
 /**1查询工资大于12000的员工信息**/
@@ -256,9 +256,7 @@ WHERE department_id <> 90;
 
 ##### 2_逻辑表达式
 
-==&&	|| 	!==
-
-==and	or	not==
+###### &&	|| 	!	and	or	not
 
 ```sql
 /**3查询工资在10000到20000之间的员工名、工资及奖金**/
@@ -287,7 +285,7 @@ WHERE NOT (
 
 ##### 3_模糊查询（高级条件表达式）
 
-==like==
+###### like
 
 **常和通配符搭配使用：**%	任意多、_	只有一个、\转义字符、escape关键字
 
@@ -325,7 +323,7 @@ FROM
 WHERE last_name LIKE "_@_%" ESCAPE "@";
 ```
 
-==between and==
+###### between and
 
 ```sql
 /**8查询员工编号在100到200之间的员工信息**/
@@ -344,7 +342,7 @@ WHERE employee_id BETWEEN 100
   AND 120;
 ```
 
-==in==
+###### in
 
 ```sql
 /**9查询工种编号是IT_PROG、AD_VP、AD_PRES中的一个的员工的员工名和工种编号**/
@@ -365,7 +363,7 @@ FROM
 WHERE job_id IN ("IT_PROG", "AD_VP", "AD_PRES");
 ```
 
-==is null==
+###### is null
 
 ```sql
 /**10查询没有奖金的员工姓名和奖金率**/
@@ -385,7 +383,7 @@ FROM
 WHERE commission_pct IS NOT NULL;
 ```
 
-==安全等于和安全不等于==
+###### 安全等于和安全不等于
 
 ```sql
 /**12安全等于<=>、安全不等于<>**/
@@ -411,7 +409,7 @@ FROM
 WHERE salary <> 12000;
 ```
 
-==IFNULL==
+###### IFNULL
 
 ```sql
 /**13查询编号为176的员工的姓名、部门号和年薪**/
@@ -426,7 +424,7 @@ WHERE employee_id = 176;
 
 #### 排序查询
 
-##### 注意事项
+注意事项
 
 - asc代表升序，desc代表降序
 - 如果不写asc或者desc，默认按升序排序
@@ -508,7 +506,131 @@ ORDER BY salary ASC,
 
 #### 常见函数
 
-##### 1_
+注意事项
+
+- 函数可以隐藏细节，提高代码的重用性
+- 单行函数
+    - 字符函数
+    - 数学函数
+    - 日期函数
+    - 其它函数【补充】
+    - 流程控制函数【补充】
+- 分组函数（聚合函数）
+
+##### 1_字符函数
+
+###### LENGTH
+
+```sql
+ /**1.LENGTH(str)获取str参数值的字节个数**/
+SELECT
+  LENGTH ('john');
+
+SELECT
+  LENGTH ('李狗蛋hahaha');
+
+/**显示字符集**/
+SHOW VARIABLES LIKE '%char%';
+```
+
+###### CONCAT
+
+```sql
+/**2.CONCAT拼接字符串**/
+SELECT
+  CONCAT (last_name, '_', first_name)
+FROM
+  employees;
+```
+
+###### UPPER LOWER
+
+```sql
+/**2.UPPER LOWER**/
+SELECT
+  UPPER ('john');
+
+SELECT
+  LOWER ('JOHN');
+```
+
+```sql
+/**将姓名变大写，名字变小写，然后拼接**/
+SELECT
+  CONCAT (
+    UPPER (last_name),
+    '_',
+    LOWER (first_name)
+  )
+FROM
+  employees;
+```
+
+###### SUBSTR
+
+```sql
+/**4.SUBSTR截取字符串**/
+SELECT
+  SUBSTR('Hello World', 4) result;
+
+SELECT
+  SUBSTR('Hello World', 5, 3) result;
+
+/**姓名中首字符大写，其他字符小写然后用_拼接**/
+SELECT
+  CONCAT (
+    UPPER (SUBSTR(last_name, 1, 1)),
+    '_',
+    LOWER (SUBSTR(first_name, 2))
+  ) result
+FROM
+  employees;
+```
+
+###### INSTR
+
+```sql
+/**5.INSTR返回子串第一次出现的索引，找不到返回0**/
+SELECT
+  INSTR('hello World', 'l') result;
+```
+
+###### TRIM
+
+```sql
+/**6.TRIM去掉字符串前后空格或指定字符**/
+SELECT
+  LENGTH (TRIM ('     李狗蛋 ')) result;
+
+SELECT
+  TRIM(
+    'a' FROM 'aaaa李狗aaaaa蛋aaaaaaaaaaaaaaaaaaaaaaa'
+  ) result;
+```
+
+###### LPAD
+
+```sql
+/**7.lpad 用指定的字符实现左填充指定长度**/
+SELECT
+  LPAD ('殷素素', 10, '*') result;
+```
+
+###### RPAD
+
+```sql
+/**8.rpad 用指定的字符实现右填充指定长度**/
+SELECT
+  RPAD ('殷素素', 12, 'ab') result;
+```
+
+###### REPLACE
+
+```sql
+/**9.replace 替换**/
+SELECT
+  REPLACE ('hello world', 'o', 'b') AS result;
+```
 
 ##### 2_
 
