@@ -632,7 +632,32 @@ SELECT
   REPLACE ('hello world', 'o', 'b') AS result;
 ```
 
-##### 2_
+##### 2_数学函数
+
+```sql
+/**1.round四舍五入**/
+SELECT
+  ROUND (1.55);
+
+SELECT
+  ROUND (1.567, 2);
+
+/**2.ceil向上取整**/
+SELECT
+  CEIL (1.05);
+
+/**3.floor向下取整**/
+SELECT
+  FLOOR (1.55);
+
+/**4.truncate截断**/
+SELECT
+  TRUNCATE (1.6999, 1);
+
+/**5.mod取余**/
+SELECT
+  MOD (- 10, 3);
+```
 
 ##### 3_
 
