@@ -659,7 +659,60 @@ SELECT
   MOD (- 10, 3);
 ```
 
-##### 3_
+##### 3_日期函数
+
+```sql
+ #now 返回当前系统日期+时间
+ SELECT
+  NOW ();
+
+#curdate 返回当前系统日期
+ SELECT
+  CURDATE ();
+
+#curtime 返回当前系统时间
+ SELECT
+  CURTIME ();
+
+#获取指定的部分：年、月、日、时分秒
+ SELECT
+  YEAR (NOW ()) AS 年;
+
+SELECT
+  YEAR ('1889-8-8') AS 年;
+
+SELECT
+  YEAR (hiredate) 年
+FROM
+  employees;
+
+SELECT
+  MONTH (NOW ()) AS 月;
+
+SELECT
+  MONTHNAME (NOW ()) AS 月;
+
+#str_to_date:将日期格式的字符转换成指定格式的日期
+ SELECT
+  STR_TO_DATE ('1998-3-2', '%Y-%m-%d') AS out_put;
+
+SELECT
+  *
+FROM
+  employees
+WHERE hiredate = STR_TO_DATE ('4-3 1992', '%m-%d %Y');
+
+#date_format:将日期格式转换成字符
+ SELECT
+  DATE_FORMAT (NOW (), '%Y年%m月%d日');
+
+SELECT
+  last_name,
+  DATE_FORMAT (hiredate, '%m月/%d日 %y年') 入职日期
+FROM
+  employees
+WHERE commission_pct IS NOT NULL;
+```
 
 ##### 4_
 
